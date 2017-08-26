@@ -1,26 +1,26 @@
 #!/bin/bash
 
 #
-# Ubertooth install script for Kali Linux 2.0.0
+# Ubertooth install script for Raspbian
 #
-# by Raul Siles
+# Originally by Raul Siles
 # Copyright (c) 2015 DinoSec SL (www.dinosec.com)
 #
-# Version: 2015-10-R1
+# Modified by Jason Baird
+#
+# Version: 2017-03-R2
 # Date: 2015-10-31
 #
-# Ubertooth and libbtbb versions: 2015-10-R1
-# Kali Linux version: 2.0.0
+# Ubertooth and libbtbb versions: 2017-03-R2
 # Wireshark version: 1.12.6
-# Kismet version: 2013-03-R1b
+# Kismet version: 2016-07-R1
 #
 
 # Versions
-VERSION=2015-10-R1
-KALI_VERSION=2.0.0
-UBER_VERSION=2015-10-R1
+VERSION=2017-03-R2
+UBER_VERSION=2017-03-R2
 WIRESHARK_VERSION=1.12.6
-KISMET_VERSION=2013-03-R1b
+KISMET_VERSION=2016-07-R1
 
 LIBBTBB_URL=https://github.com/greatscottgadgets/libbtbb/archive/$UBER_VERSION.tar.gz
 LIBBTBB_FILENAME=libbtbb-$UBER_VERSION.tar.gz
@@ -39,8 +39,6 @@ KISMET_DIR=kismet-$KISMET_VERSION
 KISMET_CONF_FILE=/usr/local/etc/kismet.conf
 KISMET_BACK=..
 
-WIRESHARK_PLUGINS_DIR=/usr/lib/x86_64-linux-gnu/wireshark/plugins/$WIRESHARK_VERSION
-
 # ASCII Art:
 # http://patorjk.com/software/taag/
 # Based on figlet
@@ -55,14 +53,13 @@ echo "  \___/|_.__/ \___|_|   \__\___/ \___/ \__|_| |_|  \___/_| |_|___/\__\__,_
 echo
 
 echo
-echo " - Script to install Ubertooth $UBER_VERSION in Kali Linux $KALI_VERSION -"
+echo " - Script to install Ubertooth $UBER_VERSION and Kismet $KISMET_VERSION"
 echo
 echo "   Version: $VERSION"
 echo "   By Raul Siles (DinoSec - www.dinosec.com)"
 echo
 echo "   Tools Versions:"
 echo "   - Ubertooth & libbtbb: $UBER_VERSION"
-echo "   - Kali Linux: $KALI_VERSION"
 echo "   - Wireshark: $WIRESHARK_VERSION"
 echo "   - Kismet: $KISMET_VERSION"
 echo
@@ -121,7 +118,6 @@ cd $KISMET_BACK
 echo
 echo "[*] Adding 'pcapbtbb' to the 'logtypes=...' line in kismet.conf..."
 #
-# Kali Linux 2.0.0
 # /etc/kismet/kismet.conf <-- Not used
 # /usr/local/etc/kismet.conf <-- Used when manually compiled
 #
@@ -129,34 +125,7 @@ sudo cp $KISMET_CONF_FILE $KISMET_CONF_FILE.previous
 sed -i 's/\(pcapdump,gpsxml,netxml,nettxt,alert\)/\1,pcapbtbb/g' $KISMET_CONF_FILE
 #OR:
 #sed -i 's/logtypes=pcapdump/logtypes=pcapbtbb,pcpadump/g' $KISMET_CONF_FILE
-#
-
-echo
-echo "[*] Building the Ubertooth BTBB Wireshark plugin..."
-echo
-sudo apt-get -y install wireshark wireshark-dev libwireshark-dev cmake
-cd $LIBBTBB_DIR/wireshark/plugins/btbb
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_LIBDIR=$WIRESHARK_PLUGINS_DIR ..
-make
-sudo make install
-cd ../../../../..
-
-echo
-echo "[*] Building the Ubertooth BT BR/EDR Wireshark plugin..."
-echo
-sudo apt-get -y install wireshark wireshark-dev libwireshark-dev cmake
-cd $LIBBTBB_DIR/wireshark/plugins/btbredr
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_LIBDIR=$WIRESHARK_PLUGINS_DIR ..
-make
-sudo make install
-cd ../../../../..
-
 
 echo
 echo "[*] End of the Ubertooth install script. Congratulations! ;)"
 echo
-
