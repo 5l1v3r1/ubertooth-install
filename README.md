@@ -1,40 +1,21 @@
 # ubertooth-install
-Ubertooth installation script for Kali Linux 2.x.
+Ubertooth installation script for Raspian
 
 This script requires Internet access and will donwload multiple software packages to the current directory.
 
 # Version:
-2015-10-R1
+2017-03-R2
 
 # Tools Versions:
-- Ubertooth & libbtbb: 2015-10-R1
-- Kali Linux: 2.0.0
-- Wireshark: 1.12.6
-- Kismet: 2013-03-R1b
+- Ubertooth & libbtbb: 2017-03-R2
+- Kismet: 2016-07-R1
 
 # Main Projects:
-- [Ubertooth](https://github.com/greatscottgadgets/ubertooth/): 2015-10-R1
-- [libbtbb](https://github.com/greatscottgadgets/libbtbb/): 2015-10-R1
+- [Ubertooth](https://github.com/greatscottgadgets/ubertooth/)
+- [libbtbb](https://github.com/greatscottgadgets/libbtbb/)
 
 # Usage:
 ```
 From Git:
-$ git clone https://github.com/dinosec/ubertooth-install.git
+$ git clone https://github.com/skinnyrad/ubertooth-install.git
 $ cd ubertooth-install
-
-(or)
-
-From the latest release: (using curl or wget)
-$ curl -LOJ https://github.com/dinosec/ubertooth-install/archive/2015-10-R1.tar.gz
-(or)
-$ wget --content-disposition https://github.com/dinosec/ubertooth-install/archive/2015-10-R1.tar.gz
-
-$ tar xzf ubertooth-install-2015-10-R1.tar.gz
-$ cd ubertooth-install-2015-10-R1
-
-Go:
-$ sudo ./ubertooth_install.sh
-```
-
-Feedback and issues with this script would be most welcome!
-
