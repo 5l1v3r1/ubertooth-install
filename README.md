@@ -19,3 +19,4 @@ This script requires Internet access and will donwload multiple software package
 From Git:
 $ git clone https://github.com/skinnyrad/ubertooth-install.git
 $ cd ubertooth-install
+$ sudo ./ubertooth_install.sh
