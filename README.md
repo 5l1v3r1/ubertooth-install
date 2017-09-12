@@ -1,7 +1,7 @@
 # ubertooth-install
-Ubertooth installation script for Raspian
+Ubertooth installation script for Raspian. This script will install Kismet, Libbtbb, Ubertooth tools, and Ubertooth plugins for Kismet.
 
-This script requires Internet access and will donwload multiple software packages to the current directory.
+This script requires Internet access and will download multiple software packages to the current directory.
 
 # Version:
 2017-03-R2
