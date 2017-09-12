@@ -16,6 +16,10 @@ This script requires Internet access and will donwload multiple software package
 
 # Usage:
 ```
+Before running the commands below, run a
+
+sudo apt-get update
+
 From Git:
 $ git clone https://github.com/skinnyrad/ubertooth-install.git
 $ cd ubertooth-install
