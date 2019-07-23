@@ -4,11 +4,11 @@ Ubertooth installation script for Raspian. This script will install Kismet, Libb
 This script requires Internet access and will download multiple software packages to the current directory.
 
 # Version:
-2017-03-R2
+2018-12-R1
 
 # Tools Versions:
-- Ubertooth & libbtbb: 2017-03-R2
-- Kismet: 2016-07-R1
+- Ubertooth & libbtbb: 2018-12-R1
+- Kismet: 2019-07-R2 
 
 # Main Projects:
 - [Ubertooth](https://github.com/greatscottgadgets/ubertooth/)
@@ -23,4 +23,4 @@ $ sudo apt-get update
 Then:
 $ git clone https://github.com/skinnyrad/ubertooth-install.git
 $ cd ubertooth-install
-$ sudo ./ubertooth_install.sh
+$ sudo ./ubertooth_installv2.sh
