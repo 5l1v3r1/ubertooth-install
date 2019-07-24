@@ -8,7 +8,7 @@ This script requires Internet access and will download multiple software package
 
 # Tools Versions:
 - Ubertooth & libbtbb: 2018-12-R1
-- Kismet: 2019-07-R2 
+- Kismet: Package Install for Raspberry Pi 
 
 # Main Projects:
 - [Ubertooth](https://github.com/greatscottgadgets/ubertooth/)
@@ -23,4 +23,4 @@ $ sudo apt-get update
 Then:
 $ git clone https://github.com/skinnyrad/ubertooth-install.git
 $ cd ubertooth-install
-$ sudo ./ubertooth_installv2.sh
+$ sudo ./ubertooth_install.sh
