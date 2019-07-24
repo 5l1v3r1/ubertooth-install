@@ -11,16 +11,14 @@
 # Version: 2017-03-R2
 # Date: 2015-10-31
 #
-# Ubertooth and libbtbb versions: 2017-03-R2
-# Wireshark version: 1.12.6
+# Ubertooth and libbtbb versions: 2018-12-R1
 # Kismet version: 2016-07-R1
 #
 
 # Versions
-VERSION=2017-03-R2
-UBER_VERSION=2017-03-R2
-WIRESHARK_VERSION=1.12.6
-KISMET_VERSION=2016-07-R1
+VERSION=2018-12-R1
+UBER_VERSION=2018-12-R1
+KISMET_VERSION=Latest
 
 LIBBTBB_URL=https://github.com/greatscottgadgets/libbtbb/archive/$UBER_VERSION.tar.gz
 LIBBTBB_FILENAME=libbtbb-$UBER_VERSION.tar.gz
@@ -33,10 +31,6 @@ UBERTOOTH_DIR_HOST=ubertooth-$UBER_VERSION/host
 UBERTOOTH_DIR=ubertooth-$UBER_VERSION
 UBERTOOTH_BACK=../../..
 
-KISMET_URL=https://kismetwireless.net/code/kismet-$KISMET_VERSION.tar.xz
-KISMET_FILENAME=kismet-$KISMET_VERSION.tar.xz
-KISMET_DIR=kismet-$KISMET_VERSION
-KISMET_CONF_FILE=/usr/local/etc/kismet.conf
 KISMET_BACK=..
 
 # ASCII Art:
@@ -60,7 +54,6 @@ echo "   By Raul Siles (DinoSec - www.dinosec.com)"
 echo
 echo "   Tools Versions:"
 echo "   - Ubertooth & libbtbb: $UBER_VERSION"
-echo "   - Wireshark: $WIRESHARK_VERSION"
 echo "   - Kismet: $KISMET_VERSION"
 echo
 
@@ -105,27 +98,11 @@ echo
 echo "[*] Building Kismet and the Ubertooth Kismet plugin..."
 echo
 sudo apt-get -y install libpcap0.8-dev libcap-dev pkg-config build-essential libnl-3-dev libnl-genl-3-dev libncurses5-dev libpcre3-dev libpcap-dev libcap-dev
-wget $KISMET_URL
-tar xf $KISMET_FILENAME
-cd $KISMET_DIR
-ln -s ../$UBERTOOTH_DIR/host/kismet/plugin-ubertooth .
-./configure
-make dep && make && make plugins
-sudo make suidinstall
-sudo make plugins-install
-cd $KISMET_BACK
+wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+echo 'deb https://www.kismetwireless.net/repos/apt/release/buster stretch main' | sudo tee /etc/apt/sources.list.d/kismet.list
+sudo apt update
+sudo apt install kismet
 
 echo
-echo "[*] Adding 'pcapbtbb' to the 'logtypes=...' line in kismet.conf..."
-#
-# /etc/kismet/kismet.conf <-- Not used
-# /usr/local/etc/kismet.conf <-- Used when manually compiled
-#
-sudo cp $KISMET_CONF_FILE $KISMET_CONF_FILE.previous
-sed -i 's/\(pcapdump,gpsxml,netxml,nettxt,alert\)/\1,pcapbtbb/g' $KISMET_CONF_FILE
-#OR:
-#sed -i 's/logtypes=pcapdump/logtypes=pcapbtbb,pcpadump/g' $KISMET_CONF_FILE
-
-echo
-echo "[*] End of the Ubertooth install script. Congratulations! ;)"
+echo "[*] End of the install script. Congratulations! ;)"
 echo
